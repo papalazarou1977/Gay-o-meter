@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gay Name App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #fce4ec, #fff3e0);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #880e4f;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+    }
+
+    input {
+      width: 250px;
+    }
+
+    button {
+      background-color: #ff4081;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #f50057;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 4s linear infinite;
+    }
+
+    .meter-container {
+      width: 300px;
+      height: 25px;
+      border-radius: 15px;
+      background: #ddd;
+      overflow: hidden;
+      margin-top: 25px;
+      box-shadow: inset 0 0 5px #888;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      transition: width 1s ease;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% }
+      100% { background-position: 100% }
+    }
+  </style>
+</head>
+<body>
+  <h1>Who's the Gayest?</h1>
+  <input type="text" id="nameInput" placeholder="Enter your name" />
+  <button onclick="declareGay()">Submit</button>
+  <div class="result" id="resultText"></div>
+
+  <div class="meter-container">
+    <div class="meter-fill" id="gayMeter"></div>
+  </div>
+
+  <audio id="gaySound" src="yaas-queen.mp3" preload="auto"></audio>
+
+  <script>
+    function declareGay() {
+      const input = document.getElementById('nameInput').value.trim();
+      const name = input.toLowerCase();
+      const resultText = document.getElementById('resultText');
+      const sound = document.getElementById('gaySound');
+      const meter = document.getElementById('gayMeter');
+
+      const fabulousNames = [
+        "darren thomas",
+        "darren zabfunk thomas"
+      ];
+
+      if (!name) {
+        resultText.textContent = "Enter a name, silly!";
+        meter.style.width = "0%";
+        return;
+      }
+
+      if (fabulousNames.includes(name)) {
+        resultText.textContent = `${input} is *BY FAR* the gayest person in the world!`;
+        meter.style.width = "100%";
+        sound.currentTime = 0;
+        sound.play();
+      } else {
+        resultText.textContent = `${input}? Hmm... not gay!`;
+        meter.style.width = "15%";
+      }
+    }
+  </script>
+</body>
+</html>
